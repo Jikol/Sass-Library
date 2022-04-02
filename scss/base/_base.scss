@@ -1,21 +1,13 @@
 // -----------------------------------------------------------------------------
-// Stylesheet file for global styles
+// Stylesheet file for global styles and custom reset
 // -----------------------------------------------------------------------------
 
 /**
  * Inspiration for reset rules:
  * https://www.joshwcomeau.com/css/custom-css-reset/#the-css-reset
  * https://piccalil.li/blog/a-modern-css-reset/
+ * https://github.com/jensimmons/cssremedy
 **/
-
-/**
- * Make all elements from the DOM inherit from the parent box-sizing
-**/
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
 
 /**
  * Remove default margin
@@ -26,7 +18,7 @@
 }
 
 /**
- * Set up a usable box model wihout computed height and width with box model
+ * Set up a usable box model without computed height and width with box model
 **/
 html,
 body {
@@ -46,7 +38,6 @@ html:focus-within {
  * Allow percentage-based heights in the application
 **/
 html {
-  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   hyphens: auto;
   /* stylelint-disable */
@@ -58,12 +49,45 @@ html {
  * Improve media defaults
 **/
 img,
-picture,
 video,
 canvas,
-svg {
+svg,
+audio,
+iframe,
+embed,
+object {
   display: block;
   max-width: 100%;
+  vertical-align: middle;
+}
+
+audio:not([controls]) {
+  display: none;
+}
+
+/**
+ * Fix correct display for new picture element
+**/
+picture {
+  display: contents;
+}
+
+source {
+  display: none;
+}
+
+/**
+ * Keep intrinsic aspect ratio
+**/
+img, svg, video, canvas {
+  height: auto;
+}
+
+/**
+ * Fix static width of audio element
+**/
+audio {
+  width: 100%;
 }
 
 /**
@@ -145,4 +169,18 @@ input {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/**
+ * Maintain hidden behavior for overriding display value
+**/
+[hidden] {
+  display: none;
+}
+
+/**
+ * Disable overflow formatted text
+**/
+pre {
+  white-space: pre-wrap;
 }
