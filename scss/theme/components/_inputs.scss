@@ -1,0 +1,28 @@
+// -----------------------------------------------------------------------------
+// Stylesheet file for all inputs utility styles
+// -----------------------------------------------------------------------------
+
+@use "../helpers/mixins" as *;
+
+/// Input behavior on any html tag
+.in {
+  padding-inline: 0.5em;
+  padding-block: 0.3em;
+  border: 1px solid white;
+}
+
+/// Select behavior on any html tag
+.slct {
+  padding-inline: 0.5em;
+  padding-block: 0.2em;
+  background-color: gray;
+
+  option {
+    background-color: black;
+    color: white;
+  }
+}
+
+.slct--report {
+  @include font-size(400);
+}

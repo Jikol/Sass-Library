@@ -1,0 +1,93 @@
+// -----------------------------------------------------------------------------
+// Stylesheet file for sass generated css variables and @font-face
+// -----------------------------------------------------------------------------
+
+@use "sass:map";
+@use "sass:list";
+@use "../base/maps" as m;
+@use "../base/typography" as *;
+@use "mixins" as *;
+@use "functions" as f;
+
+@if not map.get(m.$themes, "dark") {
+  :root {
+    @each $type, $value in m.$colors-light {
+      --clr-#{$type}: #{$value};
+    }
+
+    color-scheme: light;
+  }
+} @else {
+  :root, [data-theme="dark"] {
+    @each $type, $value in m.$colors-dark {
+      --clr-#{$type}: #{$value};
+    }
+
+    color-scheme: dark;
+  }
+
+  :root, [data-theme="light"] {
+    @each $type, $value in m.$colors-light {
+      --clr-#{$type}: #{$value};
+    }
+
+    color-scheme: light;
+  }
+}
+
+:root {
+  @each $type, $value in m.$gradients {
+    --grd-#{$type}: #{$value};
+  }
+
+  @each $type, $value in m.$shadows {
+    @each $layer, $value in $value {
+      @if $type == "normal" {
+        --bs-#{$layer}: #{$value};
+      }
+      @if $type == "invert" {
+        --bs-inset-#{$layer}: #{$value};
+      }
+      @if $type == "text" {
+        --bs-txt-#{$layer}: #{$value};
+      }
+    }
+  }
+
+  @each $breakpoint, $size in m.$font-sizes {
+
+    @if not list.index(map.keys(m.$breakpoints), $breakpoint) {
+      @each $size, $value in $size {
+        --fs-#{$size}: #{$value};
+        --lh-#{$size}: #{grid-unit(f.strip-unit($value))}
+      }
+    } @else {
+      @include mq($breakpoint) {
+        @each $size, $value in $size {
+          --fs-#{$size}: #{$value};
+          --lh-#{$size}: #{grid-unit(f.strip-unit($value))}
+        }
+      }
+    }
+  }
+
+  @each $breakpoint, $value in m.$breakpoints {
+    --bp-#{$breakpoint}: #{f.strip-unit($value)};
+  }
+}
+
+@each $name, $name-value in m.$fonts {
+  @each $type, $type-value in $name-value {
+    $name: map.get($name-value, "name");
+    @if $type == "types" {
+      @each $weight, $weight-value in $type-value {
+        @font-face {
+          font-weight: map.get($weight-value, "weight");
+          font-style: map.get($weight-value, "style");
+          font-family: $name;
+          src: url('#{map.get($weight-value, "src")}') format('#{map.get($weight-value, "format")}');
+        }
+      }
+    }
+  }
+}

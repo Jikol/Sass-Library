@@ -1,0 +1,25 @@
+/// Module stylesheet for Selection component
+
+@use "../../../../theme/helpers/mixins" as *;
+
+.selection {
+  @include flex;
+  @include flex-place(flex-start flex-start);
+  @include font-size(400);
+
+  margin-right: 1em;
+
+  label {
+    @include center;
+
+    padding-inline: 0.7em;
+    padding-block: 0.4em;
+    border: 1px solid black;
+    border-radius: 7px 0 0 7px;
+    background-color: var(--clr-raisin-black-1);
+    color: var(--clr-cultured);
+    box-shadow: var(--bs-base);
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+}

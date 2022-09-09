@@ -1,0 +1,18 @@
+/// Module stylesheet for Tabs component
+
+@use "src/theme/helpers/mixins" as *;
+@use "src/theme/components/buttons" as *;
+
+.tabs {
+  overflow: hidden;
+  margin-block: 1.2em;
+  margin-left: 1em;
+
+  ul {
+    padding: 0;
+  }
+
+  a {
+    margin-bottom: 0.5em;
+  }
+}

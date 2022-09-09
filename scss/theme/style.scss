@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+// -----------------------------------------------------------------------------
+// Stylesheet file for importing all others stylesheet files
+// -----------------------------------------------------------------------------
+
+/// 1. Use any vendors
+@use "vendors/ax-normalize";
+
+/// 2. Use all helpers
+@use "helpers" as *;
+
+/// 3. Use all base stuff
+@use "base" as *;
+
+/// 4. Use all component
+@use "components" as *;
+
+/// Dev poster
+.poster {
+  @include pseudo {
+    @include center-translate;
+    @include flex;
+    @include flex-place(center);
+
+    width: 100%;
+    max-height: grid-unit(5);
+    background-image: linear-gradient(217deg, rgb(255 0 0 / 80%), rgb(255 0 0 / 0%) 70.71%),
+      linear-gradient(127deg, rgb(0 255 0 / 80%), rgb(0 255 0 / 0%) 70.71%),
+      linear-gradient(336deg, rgb(0 0 255 / 80%), rgb(0 0 255 / 0%) 70.71%);
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    letter-spacing: 0.2ch;
+    text-align: center;
+    -webkit-text-fill-color: transparent;
+  }
+
+  background-color: seashell;
+
+  &::after {
+    @include font-size(700);
+
+    content: "React template @LPP";
+    top: 50%;
+    left: 50%;
+    margin-top: -0.8em;
+  }
+
+  &::before {
+    @include mq-base {
+      margin-top: 1.5em;
+    }
+    @include font-size(500);
+
+    content: "Javorský Ondřej";
+    top: 50%;
+    left: 50%;
+    margin-top: 0.8em;
+  }
+}

@@ -1,0 +1,23 @@
+/// Module stylesheet for Inpution component
+
+@use "src/theme/helpers/mixins" as *;
+
+.inpution {
+  @include flex;
+  @include font-size(400);
+
+  label {
+    @include center;
+
+    margin-right: 0.8em;
+    padding-inline: 0.7em;
+    padding-block: 0.4em;
+    border: 1px solid black;
+    border-radius: 7px;
+    background-color: var(--clr-raisin-black-1);
+    color: var(--clr-cultured);
+    box-shadow: var(--bs-base);
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+}

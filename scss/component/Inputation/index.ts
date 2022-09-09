@@ -1,0 +1,1 @@
+export { Inpution } from "./Inpution";

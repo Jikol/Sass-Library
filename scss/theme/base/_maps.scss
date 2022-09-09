@@ -1,0 +1,173 @@
+// -----------------------------------------------------------------------------
+// Stylesheet file for color, @font-face & unified font sizes,
+// box-sahdow & text-shadow map Sass variables.
+// -----------------------------------------------------------------------------
+
+@use "sass:map";
+@use "../helpers/functions" as f;
+@use "typography" as *;
+
+/// Breakpoints map in pixels
+/// (converted to em by $base-font-size)
+/// source: https://bit.ly/3NO6ZsA
+/// @param {String} sm - target tablets
+/// @param {String} md - target laptops
+/// @param {String} lg - target desktops
+$breakpoints: (
+  xs: 482px,
+  sm: 267px,
+  md: 990px,
+  lg: 1296px,
+);
+
+/// Themes map
+/// define additional types of themes
+/// @example
+$themes: (
+  dark: true
+);
+
+/// Colors map
+/// @example $colors-light: (
+///   antique-white: hsl(32 100% 93%)
+/// );
+/// @example $colors-dark: (
+///   rich-black: hsl(202deg 85% 8%)
+/// );
+$colors-light: ();
+$colors-dark: (
+  rich-black-1: hsl(225deg 21% 11%),
+  rich-black-2: hsl(228deg 22% 9%),
+  rich-black-3: hsl(220deg 14% 4%),
+  raisin-black-1: hsl(226deg 21% 16%),
+  raisin-black-2: hsl(224deg 21% 14%),
+  raisin-black-3: hsl(226deg 22% 19%),
+  space-cadet: hsl(224deg 21% 25%),
+  camel: hsl(37deg 40% 59%),
+  cultured: hsl(0deg 0% 92%),
+  spanish-grey: hsl(228deg 3% 62%),
+  silver-sand: hsl(225deg 3% 77%),
+  yellow-green: hsl(127deg 97% 37%),
+  erin: hsl(127deg 97% 47%),
+);
+
+/// Gradients map
+/// @example
+$gradients: (
+  linear-black-1: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 30%)),
+  linear-black-2: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 50%)),
+  linear-black-3: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 70%)),
+);
+
+/// Box-shadows map
+/// @example
+$shadows: (
+  normal: (
+    base: rgb(0 0 0 / 35%) 0 5px 15px
+  ),
+  invert: (
+    base: (0 3px 6px rgb(0 0 0 / 16%) inset, 0 3px 6px rgb(0 0 0 / 23%) inset)
+  ),
+  text: (
+    base: 2px 2px 3px rgb(0 0 0 / 44%)
+  )
+);
+
+/// Fonts map
+/// @example $fonts: (
+///  roboto: (
+///    name: "Roboto",
+///    types: (
+///      400: (
+///        src: "#{$font-path}/Roboto-Regular.ttf",
+///        format: "truetype",
+///        weight: 400,
+///        style: normal,
+///      )
+///    )
+///  )
+/// );
+$font-path: "../../public/fonts";
+$fonts: (
+  jetbrains: (
+    name: "JetBrainsMono",
+    types: (
+      300: (
+        src: "#{$font-path}/JetBrainsMono-Light.ttf",
+        format: "truetype",
+        weight: 300,
+        style: normal
+      ),
+      400: (
+        src: "#{$font-path}/JetBrainsMono-Regular.ttf",
+        format: "truetype",
+        weight: 400,
+        style: normal
+      ),
+      500: (
+        src: "#{$font-path}/JetBrainsMono-Medium.ttf",
+        format: "truetype",
+        weight: 500,
+        style: normal
+      ),
+      600: (
+        src: "#{$font-path}/JetBrainsMono-SemiBold.ttf",
+        format: "truetype",
+        weight: 600,
+        style: normal
+      ),
+      700: (
+        src: "#{$font-path}/JetBrainsMono-Bold.ttf",
+        format: "truetype",
+        weight: 700,
+        style: normal
+      )
+    )
+  )
+);
+
+/// Font sizes map
+/// @example
+$font-size: f.px-to-rem($base-font-size, $base-font-size);
+$font-sizes: (
+  base: (
+    100: $font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 100))),
+    200: $font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 200))),
+    300: $font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 300))),
+    400: $font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 400))),
+    500: $font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 500))),
+    600: $font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 600))),
+    700: $font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 700))),
+    800: $font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 800))),
+  ),
+  sm: (
+    100: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 100))), $percentage-difference-multiplier),
+    200: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 200))), $percentage-difference-multiplier),
+    300: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 300))), $percentage-difference-multiplier),
+    400: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 400))), $percentage-difference-multiplier),
+    500: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 500))), $percentage-difference-multiplier),
+    600: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 600))), $percentage-difference-multiplier),
+    700: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 700))), $percentage-difference-multiplier),
+    800: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 800))), $percentage-difference-multiplier),
+  ),
+  md: (
+    100: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 100))), $percentage-difference-multiplier * 2),
+    200: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 200))), $percentage-difference-multiplier * 2),
+    300: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 300))), $percentage-difference-multiplier * 2),
+    400: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 400))), $percentage-difference-multiplier * 2),
+    500: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 500))), $percentage-difference-multiplier * 2),
+    600: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 600))), $percentage-difference-multiplier * 2),
+    700: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 700))), $percentage-difference-multiplier * 2),
+    800: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 800))), $percentage-difference-multiplier * 2),
+  ),
+  lg: (
+    100: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 100))), $percentage-difference-multiplier * 3),
+    200: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 200))), $percentage-difference-multiplier * 3),
+    300: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 300))), $percentage-difference-multiplier * 3),
+    400: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 400))), $percentage-difference-multiplier * 3),
+    500: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 500))), $percentage-difference-multiplier * 3),
+    600: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 600))), $percentage-difference-multiplier * 3),
+    700: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 700))), $percentage-difference-multiplier * 3),
+    800: f.unit-perct-mult($font-size + f.str-to-unit(grid-unit(map.get($font-size-adjuster, 800))), $percentage-difference-multiplier * 3),
+  ),
+);

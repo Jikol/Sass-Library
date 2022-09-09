@@ -1,0 +1,1 @@
+export { IconSwitcher } from "./IconSwitcher";

@@ -1,0 +1,86 @@
+// -----------------------------------------------------------------------------
+// Stylesheet file for all buttons utility styles
+// -----------------------------------------------------------------------------
+
+@use "../helpers/mixins" as *;
+
+/// Button behavior on any html tag
+.btn {
+  @include center;
+
+  padding-inline: 1em;
+  padding-block: 0.5em;
+  border: 1px solid white;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  color: white;
+  text-align: center;
+  transition: all 0.2s;
+
+  svg {
+    $test: var(--bs-txt-base);
+
+    filter: drop-shadow($test);
+  }
+}
+
+.btn--basic {
+  @include on-hover {
+    transform: translateY(-2px);
+  }
+  @include on-active {
+    transform: scale(0.98) translateY(1px);
+  }
+  @include pseudo(after) {
+    background: var(--grd-linear-black-1);
+  }
+  @include font-size(500);
+
+  border: 1px solid ;
+  border-radius: 7px;
+  box-shadow: var(--bs-base);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.15s;
+}
+
+.btn--tab {
+  @include font-size(600);
+  @include pseudo(after) {
+    background: var(--grd-linear-black-1);
+  }
+  @include on-hover {
+    background-color: var(--clr-raisin-black-1);
+
+    svg {
+      fill: white;
+    }
+  }
+  @include on-active {
+    background-color: var(--clr-silver-sand);
+    transform: translateX(1px);
+
+    svg {
+      fill: var(--clr-raisin-black-3);
+    }
+  }
+
+  padding-inline: 0.75em;
+  padding-block: 0.7em;
+  border: 1px solid black;
+  border-radius: 7px 0 0 7px;
+  background-color: var(--clr-rich-black-1);
+  box-shadow: var(--bs-base);
+  transform: translateX(7%);
+
+  svg {
+    fill: var(--clr-cultured);
+  }
+}
+
+.btn--green {
+  border: 1px solid black;
+  background-color: var(--clr-yellow-green);
+  color: black;
+}

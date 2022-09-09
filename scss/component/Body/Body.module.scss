@@ -1,0 +1,12 @@
+/// Module stylesheet for Body component
+
+@use "src/theme/helpers/mixins" as *;
+
+.body {
+  flex: 1;
+  margin-bottom: 1em;
+  border: 1px solid black;
+  border-radius: 0 0 0 9px;
+  background-color: var(--clr-rich-black-2);
+  box-shadow: var(--bs-base);
+}

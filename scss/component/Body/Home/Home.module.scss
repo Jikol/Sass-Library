@@ -1,0 +1,129 @@
+/// Module stylesheet for Home component
+
+@use "src/theme/helpers/mixins" as *;
+@use "sass:color";
+
+.home {
+  @include font-size(400);
+  @include flex;
+
+  gap: 1em;
+  height: 100%;
+  padding-inline: 1.2em;
+  padding-block: 0.8em;
+
+  &__left {
+    @include flex(column);
+
+    flex: 1;
+  }
+
+  &__right {
+    @include flex(column);
+
+    gap: 0.5em;
+    min-width: max(20ch, 20%);
+  }
+}
+
+.header {
+  @include flex;
+  @include flex-place(flex-start center);
+
+  margin-right: 0.5em;
+  margin-bottom: 0.7em;
+
+  &__left {
+    @include flex;
+  }
+
+  &__right {
+    @include flex;
+    @include flex-place(space-between center);
+
+    flex: 1;
+    margin-left: 1em;
+  }
+
+  &__sep {
+    @include pseudo(after) {
+      background: var(--grd-linear-black-1);
+    }
+    @include size(0.4em);
+
+    border-radius: 10px;
+    background-color: var(--clr-spanish-grey);
+  }
+}
+
+.sep {
+  @include pseudo(after) {
+    background: var(--grd-linear-black-1);
+  }
+  @include size(0.4em);
+
+  border-radius: 10px;
+  background-color: var(--clr-spanish-grey);
+}
+
+.body {
+  @include pseudo(after, relative, absolute, 0) {
+    border-radius: 9px !important;
+    box-shadow: var(--bs-inset-base);
+    pointer-events: none;
+  }
+
+  flex: 1;
+
+  iframe {
+    border: 1px solid var(--clr-rich-black-1);
+    border-radius: 9px;
+    box-shadow: var(--bs-base);
+  }
+}
+
+.content {
+  @include flex(column);
+
+  flex: 1;
+
+  &:last-of-type {
+    margin-bottom: 0.5em;
+  }
+
+  h3 {
+    @include flex;
+    @include flex-place(flex-start center);
+    @include font-size(400);
+
+    max-width: min-content;
+    margin-block: 0.4em;
+    margin-left: 2px;
+    color: var(--clr-cultured);
+    font-weight: 500;
+    text-transform: capitalize;
+
+    svg {
+      @include size(1.2em);
+
+      max-width: unset;
+      margin-left: 2px;
+    }
+
+    span {
+      margin-left: 0.5em;
+    }
+  }
+
+  div {
+    @include pseudo(after) {
+      background: var(--grd-linear-black-1);
+    }
+
+    flex: 1;
+    border: 1px solid var(--clr-rich-black-1);
+    border-radius: 9px;
+    background-color: var(--clr-rich-black-3);
+    box-shadow: var(--bs-base);
+  }
+}

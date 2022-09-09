@@ -1,0 +1,325 @@
+// -----------------------------------------------------------------------------
+// Stylesheet file for global styles and custom reset
+// -----------------------------------------------------------------------------
+
+@use "../helpers/mixins" as *;
+
+/**
+ * Inspiration for reset rules:
+ * https://www.joshwcomeau.com/css/custom-css-reset/#the-css-reset
+ * https://piccalil.li/blog/a-modern-css-reset/
+ * https://github.com/jensimmons/cssremedy
+ * https://github.com/thoughtbot/bitters
+**/
+
+/**
+ * Remove default margin
+**/
+* {
+  margin-inline: 0;
+  margin-block: 0;
+}
+
+/**
+ * Set up a usable box model without computed height and width with box model
+**/
+html,
+body {
+  height: 100%;
+  max-height: 100vh;
+}
+
+/**
+ * Set core root defaults
+**/
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/**
+ * Add custom font size base and line height
+ * Improve text rendering
+ * Allow percentage-based heights in the application
+**/
+html {
+  -webkit-font-smoothing: antialiased;
+  hyphens: auto;
+  /* stylelint-disable */
+  text-rendering: optimizeSpeed;
+  /* stylelint-enable */
+}
+
+/**
+ * Improve media defaults
+**/
+img,
+video,
+canvas,
+svg,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+audio:not([controls]) {
+  display: none;
+}
+
+/**
+ * Fix correct display for new picture element
+**/
+picture {
+  display: contents;
+}
+
+source {
+  display: none;
+}
+
+/**
+ * Keep intrinsic aspect ratio
+**/
+img,
+svg,
+video,
+canvas {
+  height: auto;
+}
+
+/**
+ * Fix static width of audio element
+**/
+audio {
+  width: 100%;
+}
+
+/**
+ * Remove built-in form typography styles
+**/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/**
+ * Avoid text overflows
+**/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  user-select: none;
+}
+
+/**
+ * Disable default behavior of links
+**/
+a {
+  text-decoration: none;
+}
+
+/**
+ * Define styled scrollbar for unified look with other elements
+**/
+*::-webkit-scrollbar {
+  width: 8px;
+  margin: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 1px solid inherit;
+  border-radius: 10px;
+  background: #dfdfdf linear-gradient(to right, rgb(0 0 0 / 0%), rgb(0 0 0 / 20%));
+}
+
+@include mq-base {
+  *::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+/**
+ * Create a root stacking context for React root component
+**/
+#root {
+  height: 100%;
+  isolation: isolate;
+}
+
+/**
+ * Disable blue highlight on touch devices for buttons and input
+**/
+button,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/**
+ * Remove all animations, transitions and smooth scroll for people that prefer not to see them
+**/
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/**
+ * Maintain hidden behavior for overriding display value
+**/
+[hidden] {
+  display: none;
+}
+
+/**
+ * Disable overflow formatted text
+**/
+pre {
+  white-space: pre-wrap;
+}
+
+/**
+ * Reset for `button` type elements, inspired by bitters
+**/
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"],
+[role="button"] {
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+
+  &:disabled, &.disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+/**
+ * Reset for `forms` type elements, inspired by bitters
+**/
+
+input,
+textarea,
+select,
+[type="file"] {
+  width: 100%;
+  border: none;
+  appearance: none;
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+}
+
+label {
+  user-select: none;
+  cursor: pointer;
+}
+
+select,
+[role="select"] {
+  @include on-hover {
+    background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.08787 8.44472C5.97071 8.56188 5.97071 8.75182 6.08787 8.86898L7.07782 9.859C7.19497 9.9761 7.38493 9.9761 7.50208 9.859L11.3205 6.04056C11.4376 5.92341 11.6276 5.92341 11.7447 6.04057L15.5631 9.859C15.6802 9.9761 15.8702 9.9761 15.9873 9.859L16.9773 8.86898C17.0944 8.75182 17.0944 8.56188 16.9773 8.44472L11.7447 3.21213C11.6276 3.09498 11.4376 3.09497 11.3205 3.21213L6.08787 8.44472Z' fill='white'/%3E%3Cpath d='M6.08787 15.4488C5.97071 15.3317 5.97071 15.1417 6.08787 15.0246L7.07781 14.0346C7.19497 13.9175 7.38491 13.9175 7.50207 14.0346L11.3205 17.853C11.4376 17.9701 11.6276 17.9701 11.7447 17.853L15.5631 14.0346C15.6802 13.9175 15.8702 13.9175 15.9873 14.0346L16.9773 15.0246C17.0944 15.1417 17.0944 15.3317 16.9773 15.4488L11.7447 20.6814C11.6276 20.7985 11.4376 20.7985 11.3205 20.6814L6.08787 15.4488Z' fill='white'/%3E%3C/svg%3E");
+  }
+
+  @include on-active {
+    background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.9773 4.62637C17.0944 4.50921 17.0944 4.31927 16.9773 4.20211L15.9873 3.21209C15.8702 3.09499 15.6802 3.09499 15.563 3.21209L11.7446 7.03053C11.6275 7.14768 11.4375 7.14768 11.3204 7.03052L7.50203 3.21209C7.38493 3.09499 7.19493 3.09499 7.07783 3.21209L6.08783 4.20211C5.97073 4.31927 5.97073 4.50921 6.08783 4.62637L11.3204 9.85896C11.4375 9.97611 11.6275 9.97612 11.7446 9.85896L16.9773 4.62637Z' fill='white'/%3E%3Cpath d='M16.9773 19.2672C17.0944 19.3843 17.0944 19.5743 16.9773 19.6914L15.9873 20.6814C15.8702 20.7985 15.6802 20.7985 15.5631 20.6814L11.7446 16.863C11.6275 16.7459 11.4375 16.7459 11.3204 16.863L7.50203 20.6814C7.38493 20.7985 7.19493 20.7985 7.07783 20.6814L6.08783 19.6914C5.97073 19.5743 5.97073 19.3843 6.08783 19.2672L11.3204 14.0346C11.4375 13.9175 11.6275 13.9175 11.7446 14.0346L16.9773 19.2672Z' fill='white'/%3E%3C/svg%3E");
+  }
+
+  padding-right: 1.7em !important;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.21213 9.44472C6.09497 9.56188 6.09497 9.75182 6.21213 9.86898L7.20208 10.859C7.31923 10.9761 7.50919 10.9761 7.62634 10.859L11.4448 7.04056C11.5619 6.92341 11.7519 6.92341 11.869 7.04057L15.6874 10.859C15.8045 10.9761 15.9945 10.9761 16.1116 10.859L17.1016 9.86898C17.2187 9.75182 17.2187 9.56188 17.1016 9.44472L11.869 4.21213C11.7519 4.09498 11.5619 4.09497 11.4448 4.21213L6.21213 9.44472Z' fill='white'/%3E%3Cpath d='M6.21214 14.6554C6.09498 14.5383 6.09498 14.3483 6.21214 14.2312L7.20208 13.2412C7.31924 13.1241 7.50918 13.1241 7.62634 13.2412L11.4448 17.0596C11.5619 17.1767 11.7519 17.1767 11.869 17.0596L15.6874 13.2412C15.8045 13.1241 15.9945 13.1241 16.1116 13.2412L17.1016 14.2312C17.2187 14.3483 17.2187 14.5383 17.1016 14.6554L11.869 19.888C11.7519 20.0051 11.5619 20.0051 11.4448 19.888L6.21214 14.6554Z' fill='white'/%3E%3C/svg%3E%0A");
+  background-position: 97% center;
+  background-size: 1.2em;
+  background-repeat: no-repeat;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background-image 0.1s;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+input[type="search"] {
+  &::-webkit-search-cancel-button {
+    width: 1.5em;
+    height: 1.5em;
+    background-image: url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m22 6c0-.552-.448-1-1-1h-12.628c-.437 0-.853.191-1.138.523-1.078 1.256-3.811 4.439-4.993 5.815-.16.187-.241.419-.241.651 0 .231.08.463.24.651 1.181 1.38 3.915 4.575 4.994 5.835.285.333.701.525 1.14.525h12.626c.552 0 1-.448 1-1 0-2.577 0-9.423 0-12zm-13.628.5h12.128v11h-12.126l-4.715-5.51zm5.637 4.427 1.71-1.71c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.384-.219.531l-1.711 1.711 1.728 1.728c.147.147.22.339.22.53 0 .427-.349.751-.75.751-.192 0-.384-.073-.531-.219l-1.728-1.729-1.728 1.729c-.146.146-.339.219-.531.219-.401 0-.75-.324-.75-.751 0-.191.073-.383.22-.53l1.728-1.728-1.788-1.787c-.146-.148-.219-.339-.219-.532 0-.425.346-.749.751-.749.192 0 .384.073.53.219z' fill-rule='nonzero'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  &.dark::-webkit-search-cancel-button {
+    filter: invert(1);
+  }
+
+  &.dark + svg {
+    filter: invert(1);
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+/**
+ * Reset for `table` type elements, inspired by bitters
+**/
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+thead {
+  vertical-align: bottom;
+}
+
+tbody {
+  vertical-align: top;
+}
+
+/**
+ * Reset for `iframe` type elements
+**/
+
+iframe {
+  width: 100%;
+  min-height: 100%;
+  border: none;
+  background: transparent;
+}

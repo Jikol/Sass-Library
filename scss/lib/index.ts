@@ -1,0 +1,1 @@
+export { getVpDimensions } from "./getVpDimensions";

@@ -1,0 +1,74 @@
+// -----------------------------------------------------------------------------
+// Stylesheet file for global styles and custom reset for AX ecosystem
+// -----------------------------------------------------------------------------
+
+@use "../helpers/mixins" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  @include font(jetbrains);
+
+  height: 100%;
+  max-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+iframe {
+  width: 100%;
+  min-height: 100%;
+  border: none;
+  background: transparent;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  margin: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 1px solid inherit;
+  border-radius: 10px;
+  background: #dfdfdf linear-gradient(to right, rgb(0 0 0 / 0%), rgb(0 0 0 / 20%));
+}
+
+#root {
+  height: 100%;
+  isolation: isolate;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"],
+[role="button"] {
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+
+  &:disabled, &.disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}

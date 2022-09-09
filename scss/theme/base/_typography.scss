@@ -1,0 +1,41 @@
+// -----------------------------------------------------------------------------
+// Stylesheet file for typography control
+// -----------------------------------------------------------------------------
+
+@use "sass:map";
+@use "../helpers/functions" as f;
+
+/// Base font and line height reset
+$base-font-size: 14px; /* 16px(default) = ~1rem */
+$base-line-height: 1.5;
+$percentage-difference-multiplier: 10;
+
+/// Font manipulate section
+/// @param {Map} font-size-adjuster - Map with defined differences
+/// from 400 font size for smaller and bigger sizes in one breakpoint
+$font-size-adjuster: (
+  100: -0.45,
+  200: -0.3,
+  300: -0.15,
+  400: 0,
+  500: +0.2,
+  600: +0.35,
+  700: +0.6,
+  800: +1.0,
+);
+
+/// Vertical rhythm grid unit
+/// @use Compute vertical rhythm height size used for line-height and margin
+/// @param {Number} $multiplier [1] - Vertical rhythm multiplier
+/// @return {Number} [rem] - Vertical rhythm unit
+/// @example grid-unit -> 1.25rem with $base-font-size: 16px
+/// @example grid-unit(3) -> 3.28125rem with $base-font-size: 14px
+@function grid-unit($multiplier: 1) {
+  @return #{f.strip-unit($base-font-size) * $multiplier * $base-line-height * 0.0625}rem;
+}
+
+/// Apply to root html element
+html {
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}

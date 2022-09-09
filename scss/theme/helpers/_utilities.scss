@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------
+// Stylesheet file for utility classes
+// -----------------------------------------------------------------------------
+
+@use "mixins" as *;
+@use "../base/typography" as *;
+
+.baseline-helper {
+  @include pseudo-auto(after) {
+    background-image: linear-gradient(to bottom, #0a88c4 0, rgb(255 255 255 / 0%) 1px);
+    background-size: 100% grid-unit();
+    background-repeat: repeat-y;
+  }
+}
